@@ -444,6 +444,8 @@ def _build_openapi_schema(app: Quart, extension: QuartSchema) -> dict:
                 param = {"name": name.replace("_", "-"), "in": "header", "schema": type_}
                 if "description" in type_:
                     param["description"] = type_.pop("description")
+                if "required" in type_:
+                    param["required"] = type_.pop("required")
 
                 operation_object["parameters"].append(param)  # type: ignore
 
